@@ -1,19 +1,29 @@
+import environ
 from .setting_base import *
 
-SECRET_KEY = '5j0=@l574b*6njl)27ljcab14(te=pp0qsifz95*mfo!0*ty%b'
+# reading .env file - only in development
+env = environ.Env()
+environ.Env.read_env()
+
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = env('DEBUG')
 ALLOWED_HOSTS = []
-
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+use_sqlite = False
+sqlite_db = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+postgres_db = {
+    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
+    'default': env.db(),
+}
+
+DATABASES = sqlite_db if use_sqlite else postgres_db
