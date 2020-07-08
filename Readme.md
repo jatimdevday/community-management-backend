@@ -4,4 +4,5 @@
 
 [x] Django environ for prods (with postgres db)
 [] Gunicorn in supervisor file
-[] Nginx conf
+[x] Gunicorn with systemd
+[x] Nginx conf
