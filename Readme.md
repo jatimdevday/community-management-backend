@@ -9,6 +9,7 @@
 
 ## Tutorial
 
-1. setting credential in django with environ
+1. setting credential in django with environ. More information about environ:
+   https://django-environ.readthedocs.io/en/latest/
 2. setting gunicorn with systemd and nginx configuration. You can read the tutorial here:
    https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-18-04
