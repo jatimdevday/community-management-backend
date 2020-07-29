@@ -8,13 +8,13 @@ environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
-ALLOWED_HOSTS = []
+DEBUG = env('DEBUG', default=False)
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default='')
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-use_sqlite = False
+use_sqlite = env('USE_SQLITE', default=True)
 sqlite_db = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
