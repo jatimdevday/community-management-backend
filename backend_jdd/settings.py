@@ -1,5 +1,5 @@
 import environ
-from .setting_base import *
+from .settings_base import *
 
 # reading .env file - only in development
 env = environ.Env()
