@@ -1,0 +1,17 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/root/community_management_backend
+ExecStart=/root/.virtualenvs/venv/bin/gunicorn \
+        --access-logfile - \
+        --workers 3 \
+        --bind 0.0.0.0:8000 \
+        backend_jdd.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
