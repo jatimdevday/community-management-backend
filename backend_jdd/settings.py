@@ -11,6 +11,12 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG', default=False)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default='')
 
+
+# Static And Media
+STATIC_ROOT = env( 'STATIC_ROOT',
+                    default=os.path.join(BASE_DIR, "staticfiles")
+                )
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
