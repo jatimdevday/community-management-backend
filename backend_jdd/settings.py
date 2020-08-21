@@ -33,3 +33,25 @@ postgres_db = {
 }
 
 DATABASES = sqlite_db if use_sqlite else postgres_db
+
+
+# Python-Social-Auth
+# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
+
+SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE = ['access_token']
+
+# LOGIN_URL = ''
+LOGIN_REDIRECT_URL = 'home'
+# LOGOUT_URL = 'logout'
+# LOGOUT_REDIRECT_URL = 'login'
+
+#TODO: try psa google 
+AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.google.GoogleOpenId',
+    # 'social_core.backends.google.GoogleOAuth2',
+    # 'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
