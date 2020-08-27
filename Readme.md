@@ -1,7 +1,18 @@
-# Backend JDD
+# JDD Community Backend
 
-## To Do
+## How to start development
 
-[x] Django environ for prods (with postgres db)
-[] Gunicorn in supervisor file
-[] Nginx conf
+```bash
+$ # create virtual environment
+$ mkvirtualenv jdd_community_backend
+$ cd jdd_community_backend
+
+$ # install requirements
+$ pip install -r requirements.txt
+
+$ # Set up django
+$ python manage.py migrate
+$ python manage.py createsuperuser
+$ python manage.py runserver
+```
+

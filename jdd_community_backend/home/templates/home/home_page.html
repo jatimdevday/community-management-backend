@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+<h1>{{ page.cta_headline }}</h1>
+<h2>{{ page.cta_sub_headline|richtext }}</h2>
+<a href="{{ page.cta_button_url }}">{{ page.cta_button_text }}</a>
+
+
+{% endblock content %}
