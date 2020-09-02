@@ -8,6 +8,8 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+from . import views
+
 urlpatterns = [
     path('django-admin/', admin.site.urls),
 
@@ -16,6 +18,10 @@ urlpatterns = [
 
     path('search/', search_views.search, name='search'),
 
+    path('social-auth/', include('social_django.urls', namespace='social')),
+    
+    path('home/', views.home, name='home'), # redirect to user home after login
+    path('login/', views.login, name='login'), # redirect to user home after login
 ]
 
 

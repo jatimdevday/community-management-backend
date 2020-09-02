@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
+
 ]
 
 ROOT_URLCONF = 'jdd_community_backend.urls'
@@ -82,6 +85,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -165,3 +171,17 @@ WAGTAIL_SITE_NAME = "jdd_community_backend"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+
+# Python Social Auth
+# see https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
+SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET')
+
+LOGIN_REDIRECT_URL = 'home'
+
+AUTHENTICATION_BACKENDS = (
+    # 'social_core.backends.google.GoogleOpenId',    # 'social_core.backends.google.GoogleOAuth2',    # 'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+) 
