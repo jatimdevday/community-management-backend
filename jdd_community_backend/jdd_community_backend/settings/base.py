@@ -68,6 +68,7 @@ MIDDLEWARE = [
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'jdd_community_backend.urls'
@@ -177,11 +178,13 @@ BASE_URL = 'http://example.com'
 # see https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
 SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_OAUTH2_SECRET')
 
 LOGIN_REDIRECT_URL = 'home'
 
 AUTHENTICATION_BACKENDS = (
-    # 'social_core.backends.google.GoogleOpenId',    # 'social_core.backends.google.GoogleOAuth2',    # 'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ) 
