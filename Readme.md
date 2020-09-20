@@ -16,3 +16,9 @@ $ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
+## To Do
+
+* [x] Set up settings and admin display
+* [ ] Set up homepage and blog mechanism front end
+* [ ] Deploy to VPS
+* [ ] Set up CICD

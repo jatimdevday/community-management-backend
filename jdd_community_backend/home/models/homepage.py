@@ -4,8 +4,10 @@ from wagtail.core.models import Page
 from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
 
+
 class HomePage(Page):
-    # Call to action
+    parent_page_types = ['wagtailcore.page']
+
     cta_headline = models.CharField(max_length=50)
     cta_sub_headline = RichTextField(blank=True, null=True)
     cta_button_text = models.CharField(max_length=20)
@@ -18,5 +20,3 @@ class HomePage(Page):
         FieldPanel('cta_button_text', classname="full"),
         FieldPanel('cta_button_url', classname="full"),
     ]
-
-

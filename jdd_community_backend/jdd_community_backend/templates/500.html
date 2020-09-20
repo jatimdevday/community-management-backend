@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html class="no-js">
-    <head>
-        <meta charset="utf-8" />
-        <title>Internal server error</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <h1>Internal server error</h1>
+{% extends "base.html" %}
+{% load static %}
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
-    </body>
-</html>
+{% block title %}Site is Temporarily Down{% endblock %}
+
+{% block content %}
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x align-center">
+			<div id="standard_page" class="medium-7 cell text-center">
+				<h1>Server Error, sorry 🙏</h1>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -5,3 +5,6 @@ __pycache__/
 sqlite.db
 db.sqlite3
 archive
+
+media/
+staticfiles/
