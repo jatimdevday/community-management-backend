@@ -8,6 +8,9 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
+from register import views as register_views
+from register.views import CommunityCreate, ManagerCreate
+
 from . import views
 
 urlpatterns = [
@@ -22,6 +25,9 @@ urlpatterns = [
     
     path('home/', views.home, name='home'), # redirect to user home after login
     path('login/', views.login, name='login'), # redirect to user home after login
+
+    path('register/community', CommunityCreate.as_view(), name='register-community'), # register for pengurus komunitas
+    path('register/manager', ManagerCreate.as_view(), name='register-manager'), # register for pengurus komunitas
 ]
 
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'home',
     'search',
     'utils',
+    'register',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.settings',
