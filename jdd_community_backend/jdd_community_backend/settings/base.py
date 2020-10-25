@@ -23,8 +23,6 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # reading .env file - only in development
 env = environ.Env()
-environ.Env.read_env()
-
 
 # Application definition
 
@@ -35,26 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'home',
-    'search',
-    'utils',
-
-    'wagtail.contrib.forms',
-    'wagtail.contrib.settings',
-    'wagtail.contrib.redirects',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.search',
-    'wagtail.admin',
-    'wagtail.core',
-
-    'modelcluster',
-    'taggit',
 
     'social_django',
 ]
@@ -67,8 +45,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
@@ -89,7 +65,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
-                'wagtail.contrib.settings.context_processors.settings',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
             ],
@@ -98,18 +73,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'jdd_community_backend.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -157,32 +120,23 @@ STATICFILES_DIRS = [
 ]
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
-# Javascript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
+# Javascript / CSS assets being served from cache.
 # See https://docs.djangoproject.com/en/3.1/ref/contrib/staticfiles/#manifeststaticfilesstorage
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-# Wagtail settings
-
-WAGTAIL_SITE_NAME = "jdd_community_backend"
-
-# Base URL to use when referring to full URLs within the Wagtail admin backend -
-# e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
-
-
 # Python Social Auth
 # see https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
-SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY')
-SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET')
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_OAUTH2_KEY')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_GITHUB_KEY = env('GITHUB_KEY',default='')
+SOCIAL_AUTH_GITHUB_SECRET = env('GITHUB_SECRET',default='')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = env('GOOGLE_OAUTH2_KEY',default='')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = env('GOOGLE_OAUTH2_SECRET',default='')
 
 LOGIN_REDIRECT_URL = 'home'
 

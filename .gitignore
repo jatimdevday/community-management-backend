@@ -3,7 +3,7 @@
 
 __pycache__/
 sqlite.db
-db.sqlite3
+*.sqlite3
 archive
 
 media/

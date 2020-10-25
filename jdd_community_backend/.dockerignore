@@ -2,6 +2,8 @@
 /media/
 /static/
 *.sqlite3
+.git
+.env
 
 # Python and others
 __pycache__
