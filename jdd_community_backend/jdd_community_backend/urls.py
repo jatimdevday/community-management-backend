@@ -2,6 +2,9 @@ from django.conf import settings
 from django.urls import include, path
 from django.contrib import admin
 
+from register import views as register_views
+from register.views import CommunityCreateView
+
 # To Do
 # It should in different app
 from . import views
@@ -15,6 +18,9 @@ urlpatterns = [
     # It should in different app
     path('home/', views.home, name='home'), # redirect to user home after login
     path('login/', views.login, name='login'), # redirect to user home after login
+
+    path('register/community/', CommunityCreateView.as_view(), name='register-community'), # register for pengurus komunitas
+    path('register/manager/', register_views.create_manager, name='register-manager'), # register for pengurus komunitas
 ]
 
 
