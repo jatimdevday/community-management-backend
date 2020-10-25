@@ -11,7 +11,7 @@ class CommunityAdmin(admin.ModelAdmin):
 
 
 class ManagerAdmin(admin.ModelAdmin):
-    fields = ['name', 'email', 'picture', 'community']
+    fields = ['user', 'picture', 'community']
 
 admin.site.register(Community, CommunityAdmin)
 admin.site.register(Manager, ManagerAdmin)

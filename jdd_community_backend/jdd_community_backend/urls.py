@@ -9,7 +9,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 from search import views as search_views
 
 from register import views as register_views
-from register.views import CommunityCreate, ManagerCreate
+from register.views import CommunityCreateView
 
 from . import views
 
@@ -26,8 +26,8 @@ urlpatterns = [
     path('home/', views.home, name='home'), # redirect to user home after login
     path('login/', views.login, name='login'), # redirect to user home after login
 
-    path('register/community', CommunityCreate.as_view(), name='register-community'), # register for pengurus komunitas
-    path('register/manager', ManagerCreate.as_view(), name='register-manager'), # register for pengurus komunitas
+    path('register/community/', CommunityCreateView.as_view(), name='register-community'), # register for pengurus komunitas
+    path('register/manager/', register_views.create_manager, name='register-manager'), # register for pengurus komunitas
 ]
 
 
@@ -43,7 +43,7 @@ urlpatterns = urlpatterns + [
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
-    path("", include(wagtail_urls)),
+    # path("", include(wagtail_urls)),
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:

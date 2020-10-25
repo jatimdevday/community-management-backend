@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Community(models.Model):
@@ -17,8 +18,7 @@ class Community(models.Model):
 
 
 class Manager(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     picture = models.ImageField(upload_to='manager-picture')
     community = models.ForeignKey(
         Community,
