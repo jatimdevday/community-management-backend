@@ -29,6 +29,7 @@ env = environ.Env()
 INSTALLED_APPS = [
     # Our App
     'register',
+    'event',
 
     'django.contrib.admin',
     'django.contrib.auth',
