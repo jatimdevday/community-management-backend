@@ -79,24 +79,25 @@ class EventTestCase(TestCase):
     containing title, desc, date, published date,
     """
     def test_event_status(self):
+        # create new input, published
         sample_input = {
             'title': 'Event Perdana #1 JDD',
             'description': 'event <i>percobaan</i>',
             'start_at': make_aware(datetime.strptime('30 October 2020, 18:00', '%d %B %Y, %H:%M')), 
             'end_at': make_aware(datetime.strptime('30 October 2020, 19:00', '%d %B %Y, %H:%M')), 
-            'published_at': make_aware(datetime.now())
+            'is_published': True
         }
         sample_event = Event.objects.create(**sample_input)
 
         published_events = Event.objects.published()
         # test : event above is 'published'
-        [self.assertGreaterEqual(make_aware(datetime.now()), ev.published_at) for ev in published_events]
+        [self.assertTrue(ev.is_published) for ev in published_events]
         
-
-        sample_input.pop('published_at')
-        sample_event = Event.objects.create(**sample_input)
-
+        # create new input, default is unpublished
+        sample_input.pop('is_published')
+        sample_event_2 = Event.objects.create(**sample_input)
+        
         draft_events = Event.objects.draft()
         # test : event above is 'draft'
-        [self.assertLessEqual(make_aware(datetime.now()), ev.published_at) for ev in draft_events]
+        [self.assertFalse(ev.is_published) for ev in draft_events]
         

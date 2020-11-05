@@ -21,6 +21,8 @@ urlpatterns = [
 
     path('register/community/', CommunityCreateView.as_view(), name='register-community'), # register for pengurus komunitas
     path('register/manager/', register_views.create_manager, name='register-manager'), # register for pengurus komunitas
+
+    path('event/', include('event.urls'))
 ]
 
 
