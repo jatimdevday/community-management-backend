@@ -11,18 +11,25 @@ class EventQuerySet(models.QuerySet):
     # NOT published_at < now
     def draft(self):
         return self.filter(is_published=False)
-
+"""
+    # started at between 2 date
+    def start_between(self, from_date, to_date):
+        return self.filter(start_at__range=[from_date, to_date])
+"""
 
 class EventManager(models.Manager):
-    def get_queryset(self):
-        return EventQuerySet(self.model, using=self._db)
+    def get_queryset(self, query=None):
+        return EventQuerySet(self.model, query=query, using=self._db)
 
     def published(self):
         return self.get_queryset().published()
 
     def draft(self):
         return self.get_queryset().draft()
-
+"""
+    def start_between(self, from_date, to_date):
+        return self.get_queryset(query=[from_date,to_date])
+"""
 
 class Event(models.Model):
     # model properties 
@@ -52,10 +59,14 @@ class Event(models.Model):
 
     # override save method
     def save(self, *args, **kwargs):
+        self.clean()
+        super().save(*args, **kwargs) # actual save
+
+    # override clean method
+    def clean(self):
+        super().clean()
         if self.end_at < self.start_at:
             raise ValidationError("End date happen before start date.")
-
-        super().save(*args, **kwargs) # actual save
 
     def __str__(self):
         return self.title
