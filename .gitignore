@@ -8,3 +8,5 @@ archive
 
 media/
 staticfiles/
+
+venv/
